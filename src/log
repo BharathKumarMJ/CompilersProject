@@ -1,0 +1,125 @@
+Inside read bcsr
+Seg 1 done
+Seg 2 done
+Seg 3 done
+Seg 4 done
+Seg 5 done
+Seg 6 done
+Seg 7 done
+Seg 8 done
+Seg 9 done
+Seg 10 done
+Seg 11 done
+End is END
+Value : 0.694444	Index : 0
+A value : 0.833333
+B value : 0.833333
+Bmarker : 0
+Value : 0.699028	Index : 0
+A value : 0.091639
+B value : 0.0500184
+Bmarker : 0
+Value : 0.699028	Index : 0
+A value : 0
+B value : 0
+Bmarker : 0
+Value : 0.0763658	Index : 1
+A value : 0.833333
+B value : 0.091639
+Bmarker : 0
+Value : 0.148918	Index : 1
+A value : 0.091639
+B value : 0.791713
+Bmarker : 0
+Value : 0.148918	Index : 1
+A value : 0
+B value : 0
+Bmarker : 0
+Value : 0	Index : 2
+A value : 0.833333
+B value : 0
+Bmarker : 0
+Value : 0	Index : 2
+A value : 0.091639
+B value : 0
+Bmarker : 0
+Value : 0	Index : 2
+A value : 0
+B value : 0.802787
+Bmarker : 0
+Value : 0.041682	Index : 3
+A value : 0.0500184
+B value : 0.833333
+Bmarker : 0
+Value : 0.0812823	Index : 3
+A value : 0.791713
+B value : 0.0500184
+Bmarker : 0
+Value : 0.0812823	Index : 3
+A value : 0
+B value : 0
+Bmarker : 0
+Value : 0.00458364	Index : 4
+A value : 0.0500184
+B value : 0.091639
+Bmarker : 0
+Value : 0.631393	Index : 4
+A value : 0.791713
+B value : 0.791713
+Bmarker : 0
+Value : 0.631393	Index : 4
+A value : 0
+B value : 0
+Bmarker : 0
+Value : 0	Index : 5
+A value : 0.0500184
+B value : 0
+Bmarker : 0
+Value : 0	Index : 5
+A value : 0.791713
+B value : 0
+Bmarker : 0
+Value : 0	Index : 5
+A value : 0
+B value : 0.802787
+Bmarker : 0
+Value : 0	Index : 6
+A value : 0
+B value : 0.833333
+Bmarker : 0
+Value : 0	Index : 6
+A value : 0
+B value : 0.0500184
+Bmarker : 0
+Value : 0	Index : 6
+A value : 0.802787
+B value : 0
+Bmarker : 0
+Value : 0	Index : 7
+A value : 0
+B value : 0.091639
+Bmarker : 0
+Value : 0	Index : 7
+A value : 0
+B value : 0.791713
+Bmarker : 0
+Value : 0	Index : 7
+A value : 0.802787
+B value : 0
+Bmarker : 0
+Value : 0	Index : 8
+A value : 0
+B value : 0
+Bmarker : 0
+Value : 0	Index : 8
+A value : 0
+B value : 0
+Bmarker : 0
+Value : 0.644467	Index : 8
+A value : 0.802787
+B value : 0.802787
+Bmarker : 0
+First value : 0.833333
+First value : 0.70841
+
+Time taken 0 seconds 0 milliseconds
