@@ -14,7 +14,7 @@ int main(int argc, char **argv) {
 	msec = diff * 1000 / CLOCKS_PER_SEC;
 	printf("\nTime taken %ld seconds %ld milliseconds\n", diff/1000, diff);
 	FILE *fp = fopen("output.mtx", "w");
-	print_csr_matrix_in_matrix_market_format(fp, C);
+	//print_csr_matrix_in_matrix_market_format(fp, C);
 	fclose(fp);
 
 
@@ -24,6 +24,6 @@ int main(int argc, char **argv) {
 	diff = clock() - start;
 	msec = diff * 1000 / CLOCKS_PER_SEC;
 	printf("\nTime taken %ld seconds %ld milliseconds\n", diff/1000, diff);
-	save_bcsr_matrix_in_matrix_market_format("output_bcsr.mtx", C1);
+	//save_bcsr_matrix_in_matrix_market_format("output_bcsr.mtx", C1);
 	return 0;
 }

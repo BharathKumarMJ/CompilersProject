@@ -3,14 +3,14 @@ from scipy.io import mmread, mmwrite
 from scipy.sparse.linalg import LinearOperator
 import numpy as np
 
-N = 25
+N = 2
 
-S = mmread("tmt_unsym/tmt_unsym.mtx")
+S = mmread("/Users/bkmj/Downloads/circuit5M/circuit5M.mtx")
 
 B = S.tobsr((N,N))
 # print B.todense()
 # print dir(B)
-
+print "Done converting to bsr"
 # print B.data
 data = B.data
 indices = B.indices
@@ -19,7 +19,7 @@ bm, bn = np.asarray(B.get_shape())/N
 r, c = N, N
 nnzb = data.shape[0]
 
-outFile = open("tmt_unsym25", 'w')
+outFile = open("circuit5M", 'w')
 
 # bn
 outFile.write("% bn: \n")
@@ -74,11 +74,12 @@ outFile.write(str(data.size))
 outFile.write("\n")
 
 # Data
-# print data
 outFile.write("% Data: \n")
-for i in range(data.size):
-	outFile.write(str( (data.flatten())[i] ))
-	outFile.write("\n")
+for i in range(data.size/(N*N)):
+	for j in range(N):
+		for k in range(N):
+			outFile.write(str( data[i][j][k] ) + "\n")
+	#outFile.write("\n")
 	# print str( (data.flatten())[i] )
 
 outFile.write("END \n")

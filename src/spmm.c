@@ -396,35 +396,9 @@ bcsr_matmatmult_double_real (int** cRowptr, int** cColind, double** cValues, int
 	{
 		Cind[ic] = -1;
 	}
-       
-//        * We set Cval[ic] and Cind[ic] to "invalid" values (NaN and -1, 
-//        * respectively) to make sure that we fill them all in.   Note 
-//        * that we can't use 0.0/0.0 to generate NaN because when running
-//        * this function via an FFI under some Lisps (SBCL in particular),
-//        * 0.0/0.0 raises a floating-point exception instead of being a 
-//        * silent NaN like we want it to be (mfh 28 July 2006).  That's 
-//        * why we need the C99 #defined value NAN and the fpclassify()
-//        * function in <math.h>.  We use the assert to make sure that the 
-//        * NAN really is a NAN.
-       
-// #ifdef USE_ISNAN
-// 		Cval[ic] = NAN;
-//       // assert (fpclassify (Cval[ic]) == FP_NAN);
-// #else
-//       /* 
-//        * We don't have C99 so we can't use NAN; initialize Cval[ic]
-//        * to some innocuous value instead.  Note that we can't just set
-//        * it to 0.0/0.0, as this may be evaluated; under plain C this 
-//        * typically doesn't signal, but under Lisp running the C function,
-//        * it may signal.
-//        */
-// 		Cval[ic] = 0.0;
-// #endif
-		
 
 	for (ib = 0; ib < nb; ib++)
 		B_marker[ib] = -1;
-
 
 	clock_t start, diff;
 	start = clock();
@@ -449,13 +423,6 @@ bcsr_matmatmult_double_real (int** cRowptr, int** cColind, double** cValues, int
 						for (int pp=0; pp<r; pp++) {
 							for (int qq=0; qq<c; qq++) {
 								Cval[B_marker[jb]*r*c + pp * r + qq] += a_entry[pp * r + rr] * b_entry[rr * r + qq];
-								// if (counter == 0) {
-								// 	printf("Value : %lg\t", Cval[B_marker[jb] + pp * r + qq]);
-								// 	printf("Index : %d\n", B_marker[jb] + pp * r + qq);
-								// 	printf("A value : %lg\n", a_entry[pp * r + rr]);
-								// 	printf("B value : %lg\n", b_entry[rr * r + qq]);
-								// 	//printf("Bmarker : %d\n", B_marker[jb]);
-								// }
 							}
 						}
 					}
