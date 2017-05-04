@@ -253,8 +253,9 @@ read_bcsr (const char* filename, struct bcsr_matrix_t* A)
     if (fgets(line,MAX_LINE_SIZE,f) == NULL) 
             return MM_PREMATURE_EOF;
     // Seventh segment Indices
+    int i;
     if (line[0] == '%') {
-    	for (int i=0; i<num_indices; i++) {
+    	for (i=0; i<num_indices; i++) {
     		fgets(line, MAX_LINE_SIZE, f);
     		sscanf(line, "%d", &colind[i]);
     	}
@@ -276,7 +277,7 @@ read_bcsr (const char* filename, struct bcsr_matrix_t* A)
             return MM_PREMATURE_EOF;
     // Ninth segment Indices
     if (line[0] == '%') {
-    	for (int i=0; i<num_ptrs; i++) {
+    	for (i=0; i<num_ptrs; i++) {
     		fgets(line, MAX_LINE_SIZE, f);
     		sscanf(line, "%d", &rowptr[i]);
     	}
@@ -298,7 +299,7 @@ read_bcsr (const char* filename, struct bcsr_matrix_t* A)
             return MM_PREMATURE_EOF;
     // 11 segment data
     if (line[0] == '%') {
-    	for (int i=0; i<data_size; i++) {
+    	for (i=0; i<data_size; i++) {
     		double x;
     		double* __val = (double*) (values);
     		fgets(line, MAX_LINE_SIZE, f);

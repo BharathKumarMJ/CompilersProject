@@ -403,6 +403,7 @@ bcsr_matmatmult_double_real (int** cRowptr, int** cColind, double** cValues, int
 	clock_t start, diff;
 	start = clock();
 	counter = 0;
+    int rr, pp, qq;
 	for (ic = 0; ic < mb; ic++)
 	{
 		row_start = Cptr[ic];
@@ -419,9 +420,9 @@ bcsr_matmatmult_double_real (int** cRowptr, int** cColind, double** cValues, int
 					B_marker[jb] = counter;
 					Cind[B_marker[jb]] = jb;
 					//Cval[B_marker[jb]] = a_entry * b_entry;
-					for (int rr=0; rr<c; rr++) {
-						for (int pp=0; pp<r; pp++) {
-							for (int qq=0; qq<c; qq++) {
+					for (rr=0; rr<c; rr++) {
+						for (pp=0; pp<r; pp++) {
+							for (qq=0; qq<c; qq++) {
 								Cval[B_marker[jb]*r*c + pp * r + qq] += a_entry[pp * r + rr] * b_entry[rr * r + qq];
 							}
 						}
@@ -430,9 +431,9 @@ bcsr_matmatmult_double_real (int** cRowptr, int** cColind, double** cValues, int
 				}
 				else
 				{
-					for (int rr=0; rr<c; rr++) {
-						for (int pp=0; pp<r; pp++) {
-							for (int qq=0; qq<c; qq++) {
+					for (rr=0; rr<c; rr++) {
+						for (pp=0; pp<r; pp++) {
+							for (qq=0; qq<c; qq++) {
 								Cval[B_marker[jb]*r*c + pp * r + qq] += a_entry[pp * r + rr] * b_entry[rr * r + qq];
 							}
 						}
