@@ -1,6 +1,8 @@
 #include "matrix_formats.h"
 #include "read_matrix.h"
 #include <string.h>
+#include <time.h>
+
 
 struct sparse_matrix_t*
 load_sparse_matrix (enum sparse_matrix_file_format_t file_format, 

@@ -3,9 +3,9 @@ from scipy.io import mmread, mmwrite
 from scipy.sparse.linalg import LinearOperator
 import numpy as np
 
-N = 2
-
-S = mmread("/Users/bkmj/Downloads/circuit5M/circuit5M.mtx")
+N = 8	
+filename = "synth_block_65536_8"
+S = mmread("/home/anirban/Documents/15745/Project/CompilersProject/"+filename+".mtx")
 
 B = S.tobsr((N,N))
 # print B.todense()
@@ -19,7 +19,7 @@ bm, bn = np.asarray(B.get_shape())/N
 r, c = N, N
 nnzb = data.shape[0]
 
-outFile = open("circuit5M", 'w')
+outFile = open(filename+"_"+str(N), 'w')
 
 # bn
 outFile.write("% bn: \n")

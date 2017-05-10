@@ -1,6 +1,9 @@
 #include "spmm.h"
 #include <time.h>
 
+clock_t csr_mul_time = 0;
+clock_t bcsr_mul_time = 0;
+
 struct sparse_matrix_t*
 load_sparse_matrix (enum sparse_matrix_file_format_t file_format, 
 	const char *const matrix_filename)
@@ -254,7 +257,10 @@ csr_matmatmult_double_real (int** pCptr, int** pCind, double** pCval,
 		}
 	}
 	diff = clock() - start;
-	printf("\nMULTIPLY Time taken %ld seconds %ld milliseconds\n", diff/1000, diff);
+	clock_t msec;
+	msec = diff * 1000 / CLOCKS_PER_SEC;
+	// printf("\nMULTIPLY Time taken %ld seconds %ld milliseconds\n", msec/1000, msec);
+	csr_mul_time += msec;
 	free (B_marker);
   /* Go back through and scale by alpha */
   // fprintf (3, "\tScaling by alpha\n");
@@ -443,7 +449,10 @@ bcsr_matmatmult_double_real (int** cRowptr, int** cColind, double** cValues, int
 		}
 	}
 	diff = clock() - start;
-	printf("\nMULTIPLY Time taken %ld seconds %ld milliseconds\n", diff/1000, diff);
+	clock_t msec;
+	msec = diff * 1000 / CLOCKS_PER_SEC;
+	// printf("\nMULTIPLY Time taken %ld seconds %ld milliseconds\n", msec/1000, msec);
+	bcsr_mul_time += msec;
 	free (B_marker);
 
 	*cNnzb = num_nonzerosb;
