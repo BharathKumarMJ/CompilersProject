@@ -1,0 +1,17 @@
+The folder is organized as follows : 
+
+The main directory is the src/ which has all the C source files which perform the CSR and BlockedCSR multiplication.
+
+Compiling the program:
+
+make clean; make
+
+Running the program:
+
+python fileConverter.py <input_csr_matrix.mtx> <block_size_for_bcsr> - This generates a file which has a custom representation 
+																		of BCSR that we use to parse. It is output in the same
+																		folder as that of the input csr matrix
+
+./main [-o] <input_csr_matrix.mtx> <generated_custom_bcsr_matrix> - This program does both the normal CSR multiplication
+																	and the blocked multiplication. The option -o will output
+																	the results to separate files for both.

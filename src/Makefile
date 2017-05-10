@@ -1,11 +1,11 @@
 INC = -I./include
 HEADERDIR = ./include
 
-all: mmio.o spmm.o read_matrix.o merge_sort.o  sparse_matrix_multiply.o 
-	gcc -O3 mmio.o spmm.o read_matrix.o merge_sort.o sparse_matrix_multiply.o -o sparse_matrix_multiply
+all: mmio.o spmm.o read_matrix.o merge_sort.o  main.o 
+	gcc -O3 mmio.o spmm.o read_matrix.o merge_sort.o main.o -o main
 
-sparse_matrix_multiply.o: sparse_matrix_multiply.c 
-	gcc -O3 $(INC) -c sparse_matrix_multiply.c 
+main.o: main.c 
+	gcc -O3 $(INC) -c main.c 
 mmio.o: mmio.c 
 	gcc -O3 $(INC) -c mmio.c  
 spmm.o: spmm.c 
@@ -17,3 +17,4 @@ merge_sort.o: merge_sort.c
 
 clean:
 	rm -rf *.o
+	rm -rf main
