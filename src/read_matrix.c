@@ -3,6 +3,7 @@
 #include "mmio.h"
 #include "merge_sort.h"
 
+/** Read the COO matrix into memory and convert it into CSR format */
 int
 read_matrix_market_sparse (const char* filename, struct coo_matrix_t* A, struct csr_matrix_t* B)
 {
@@ -172,6 +173,7 @@ read_matrix_market_sparse (const char* filename, struct coo_matrix_t* A, struct 
 	return 0;
 }
 
+/** Read the BCSR matrix that has been generated and populate memory */
 int
 read_bcsr (const char* filename, struct bcsr_matrix_t* A)
 {
@@ -190,7 +192,6 @@ read_bcsr (const char* filename, struct bcsr_matrix_t* A)
 
 	char line[MAX_LINE_SIZE];
 
-	//printf("Inside read bcsr\n");
 
 	f = fopen (filename, "r");
 
@@ -201,7 +202,6 @@ read_bcsr (const char* filename, struct bcsr_matrix_t* A)
     	fgets(line, MAX_LINE_SIZE, f);
     	sscanf(line, "%d", &bn);
     }
-    //printf("Seg 1 done\n");
 
     if (fgets(line,MAX_LINE_SIZE,f) == NULL) 
             return MM_PREMATURE_EOF;
@@ -210,7 +210,6 @@ read_bcsr (const char* filename, struct bcsr_matrix_t* A)
     	fgets(line, MAX_LINE_SIZE, f);
     	sscanf(line, "%d", &bm);
     }
-    //printf("Seg 2 done\n");
 
     if (fgets(line,MAX_LINE_SIZE,f) == NULL) 
             return MM_PREMATURE_EOF;
@@ -220,7 +219,6 @@ read_bcsr (const char* filename, struct bcsr_matrix_t* A)
     	sscanf(line, "%d", &r);
     }
 
-	//printf("Seg 3 done\n");
     if (fgets(line,MAX_LINE_SIZE,f) == NULL) 
             return MM_PREMATURE_EOF;
     // Fourth segment c
@@ -229,7 +227,6 @@ read_bcsr (const char* filename, struct bcsr_matrix_t* A)
     	sscanf(line, "%d", &c);
     }
 
-    //printf("Seg 4 done\n");
     if (fgets(line,MAX_LINE_SIZE,f) == NULL) 
             return MM_PREMATURE_EOF;
     // Fifth segment nnzb
@@ -238,7 +235,6 @@ read_bcsr (const char* filename, struct bcsr_matrix_t* A)
     	sscanf(line, "%d", &nnzb);
     }
 
-    //printf("Seg 5 done\n");
     if (fgets(line,MAX_LINE_SIZE,f) == NULL) 
             return MM_PREMATURE_EOF;
     // Sixth segment numIndices
@@ -247,7 +243,6 @@ read_bcsr (const char* filename, struct bcsr_matrix_t* A)
     	sscanf(line, "%d", &num_indices);
     }
 
-    //printf("Seg 6 done\n");
     // Allocate num_indices array 
     colind = (int *) malloc(num_indices * sizeof(int));
     if (fgets(line,MAX_LINE_SIZE,f) == NULL) 
@@ -261,7 +256,6 @@ read_bcsr (const char* filename, struct bcsr_matrix_t* A)
     	}
     }
 
-    //printf("Seg 7 done\n");
     if (fgets(line,MAX_LINE_SIZE,f) == NULL) 
             return MM_PREMATURE_EOF;
     // Eigth segment numPtrs
@@ -270,7 +264,6 @@ read_bcsr (const char* filename, struct bcsr_matrix_t* A)
     	sscanf(line, "%d", &num_ptrs);
     }
 
-    //printf("Seg 8 done\n");
     // Allocate rowptr array 
     rowptr = (int *) malloc(num_ptrs * sizeof(int));
     if (fgets(line,MAX_LINE_SIZE,f) == NULL) 
@@ -283,7 +276,6 @@ read_bcsr (const char* filename, struct bcsr_matrix_t* A)
     	}
     }
 
-    //printf("Seg 9 done\n");
     if (fgets(line,MAX_LINE_SIZE,f) == NULL) 
             return MM_PREMATURE_EOF;
     // Tenth segment datasize
@@ -292,7 +284,6 @@ read_bcsr (const char* filename, struct bcsr_matrix_t* A)
     	sscanf(line, "%d", &data_size);
     }
 
-    //printf("Seg 10 done\n");
     // Allocate data array 
     values = (double *) malloc(data_size * sizeof(double));
     if (fgets(line,MAX_LINE_SIZE,f) == NULL) 
@@ -308,12 +299,10 @@ read_bcsr (const char* filename, struct bcsr_matrix_t* A)
     	}
     }
 
-    //printf("Seg 11 done\n");
     char end[MAX_LINE_SIZE];
     if (fgets(line,MAX_LINE_SIZE,f) == NULL) 
             return MM_PREMATURE_EOF;
     sscanf(line, "%s", end);
-    //printf("End is %s\n", end);
         
 	A->bn   = bn;
 	A->bm   = bm;

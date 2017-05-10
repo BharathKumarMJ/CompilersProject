@@ -44,26 +44,7 @@
 
 struct coord_elem_t; /* forward declaration */
 struct coo_matrix_t; /* forward declaration */
-struct csc_matrix_t; /* forward declaration */
 struct csr_matrix_t; /* forward declaration */
-
-
-/** 
- * Uses a stable sort algorithm to sort the structs, first by row, then by
- * column.  That will ensure that the structs are grouped in order by columns,
- * and within a column by rows.  This facilitates their later conversion into a
- * CSC (aka Harwell-Boeing) format sparse matrix.
- *
- * @note Quicksort is NOT stable!!! but merge sort (with <= comparison) is.
- *
- * @param coord_array  Sparse matrix in ``coordinate array'' format
- * @param length       Number of entries in the coordinate array (number of
- *                     stored (nonzero) entries in the matrix)
- */
-void
-sort_coord_elem_array_for_csc_conversion (void* coord_array, 
-					  const int length,
-					  enum value_type_t value_type);
 
 
 /**
@@ -82,25 +63,8 @@ coo_matrix_to_coord_elem_array (void** p_coord_array,
 				int *p_length, 
 				const struct coo_matrix_t* A);
 
-
-/**
- * Converts the given coordinate (COO) format sparse matrix to CSC 
- * (aka Harwell-Boeing) format.
- *
- * @param A [OUT]  CSC-format sparse matrix
- * @param B [IN]   COO-format (struct of arrays) sparse matrix
- */
-void
-coo_to_csc_matrix (struct csc_matrix_t* A, const struct coo_matrix_t* B);
-
-struct csc_matrix_t*
-coo_to_csc (struct coo_matrix_t* A);
-
 struct coo_matrix_t*
 csr_to_coo (struct csr_matrix_t* A);
-
-struct coo_matrix_t*
-csc_to_coo (struct csc_matrix_t* A);
 
 /**
  * Reads a real (non-complex) sparse matrix (general, without any sort of 

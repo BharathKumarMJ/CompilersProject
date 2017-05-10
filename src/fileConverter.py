@@ -10,10 +10,9 @@ filename = sys.argv[1]
 S = mmread(filename)
 
 B = S.tobsr((N,N))
-# print B.todense()
-# print dir(B)
+
 print "Done converting to bsr"
-# print B.data
+
 data = B.data
 indices = B.indices
 indptr = B.indptr
